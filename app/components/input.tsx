@@ -111,6 +111,6 @@ const InputArea = React.forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-Input.displayName = "Input";
+InputArea.displayName = "InputArea";
 
 export { Input, InputArea };
