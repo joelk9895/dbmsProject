@@ -4,6 +4,7 @@ import { Label } from "../components/label";
 import { Input } from "../components/input";
 import { cn } from "../utils/cn";
 import { IconBrandGoogle, IconBrandOnlyfans } from "@tabler/icons-react";
+import { env } from "process";
 interface LoginResponse {
   accessToken: string;
 }
@@ -15,15 +16,18 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/user/login");
     try {
-      const response = await fetch("http://localhost:3000/api/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BACKEND_URL + "/api/user/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to submit form");
